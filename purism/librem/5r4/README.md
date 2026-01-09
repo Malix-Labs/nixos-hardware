@@ -38,7 +38,19 @@ Note down this device path.
 
 [`u-boot`]: ./u-boot
 
-Provided you have a way to build Nix derivations for `aarch64-linux` (like a remote builder, [binfmt emulation], or you're building it on the phone itself), just run `nix-build u-boot/build.nix`.
+Provided you have a way to build Nix derivations for `aarch64-linux` (like a remote builder, [binfmt emulation], or you're building it on the phone itself), build the u-boot package from the flake:
+
+```bash
+# From the nixos-hardware repository root
+nix build .#librem5-u-boot
+```
+
+Alternatively, if not using flakes, you can build with:
+
+```bash
+# Requires nixpkgs to be available
+nix-build -E 'with import <nixpkgs> { system = "aarch64-linux"; }; callPackage ./purism/librem/5r4/u-boot { }'
+```
 
 [binfmt emulation]: https://search.nixos.org/options?channel=22.11&show=boot.binfmt.emulatedSystems&from=0&size=50&sort=relevance&type=packages&query=binfmt
 
