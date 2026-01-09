@@ -1,10 +1,12 @@
 {
   description = "nixos-hardware";
 
-  inputs = { };
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  };
 
   outputs =
-    { self, ... }:
+    { self, nixpkgs, ... }:
     {
 
       nixosModules =
@@ -411,5 +413,20 @@
           common-pc-laptop-ssd = import ./common/pc/ssd;
           common-pc-ssd = import ./common/pc/ssd;
         };
+
+      packages =
+        let
+          forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
+        in
+        forAllSystems (
+          system:
+          let
+            pkgs = import nixpkgs { inherit system; };
+          in
+          {
+            librem5-u-boot = pkgs.callPackage ./purism/librem/5r4/u-boot { };
+            imx-optee-os = pkgs.callPackage ./nxp/common/bsp/imx-optee-os.nix { };
+          }
+        );
     };
 }

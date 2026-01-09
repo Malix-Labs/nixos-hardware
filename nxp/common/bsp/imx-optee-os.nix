@@ -4,11 +4,7 @@
 
 let
 
-  pkgsCross = import <nixpkgs> {
-    crossSystem = {
-      config = "aarch64-unknown-linux-gnu";
-    };
-  };
+  pkgsCross = pkgs.pkgsCross.aarch64-multiplatform;
 
   outdir = "out/arm-plat-imx/core";
   python3 = pkgs.buildPackages.python3;
