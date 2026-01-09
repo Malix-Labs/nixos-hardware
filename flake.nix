@@ -1,8 +1,10 @@
 {
   description = "nixos-hardware";
 
+  inputs = { };
+
   outputs =
-    { ... }:
+    { self, ... }:
     {
 
       nixosModules =
