@@ -3,11 +3,11 @@ Due to the introduction of Dual-Direct-GFX-Mode feature, you may toggle Dual-Dir
 **But It will slow down NixOS evaluation by factor 2 and increase memory usage.**  
 So if you don't need specialization feature, you can just use hybrid only configuration or nvidia only (Dual-Direct-GFX-Mode only) configuration
 
-## Using multiple drives with this configuration
+## PCI Bus ID Configuration for AMD GPU (amdgpuBusId)
 
-When using more than one drive, the value of `hardware.nvidia.prime.amdgpuBusId` will change from the default of `PCI:5:0:0`.
+Depending on the number of SSD drives installed in the system, the PCI Bus ID of the integrated AMD GPU may change between `PCI:5:0:0` and `PCI:6:0:0`.
 
-Make sure you override this default in your personal configuration. For two drives, it should be `PCI:6:0:0`.
+To avoid silent runtime failures, we do not set a default value. You must explicitly configure the `hardware.nvidia.prime.amdgpuBusId` option in your configuration (e.g. `PCI:5:0:0` for single drive, `PCI:6:0:0` for two drives).
 
 ## Setup at the time of testing
 ```

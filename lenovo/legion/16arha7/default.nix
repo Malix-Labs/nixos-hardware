@@ -13,6 +13,7 @@ let
 in
 {
   imports = [
+    ../.
     ../../../common/cpu/amd/pstate.nix
     ../../../common/gpu/amd
     ../../../common/pc/laptop

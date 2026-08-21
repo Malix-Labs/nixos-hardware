@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    ../.
     ../../../common/cpu/intel
     ../../../common/gpu/nvidia/prime.nix
     ../../../common/gpu/nvidia/ada-lovelace
@@ -12,8 +13,6 @@
     ../../../common/pc/ssd
     ../../../common/hidpi.nix
   ];
-
-  boot.extraModulePackages = [ config.boot.kernelPackages.lenovo-legion-module ];
 
   hardware = {
     nvidia = {

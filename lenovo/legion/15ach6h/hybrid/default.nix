@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../../.
     ../../../../common/cpu/amd
     ../../../../common/cpu/amd/pstate.nix
     ../../../../common/gpu/amd
@@ -28,7 +29,6 @@
       powerManagement.enable = lib.mkDefault true;
 
       prime = {
-        amdgpuBusId = lib.mkDefault "PCI:6:0:0";
         nvidiaBusId = "PCI:1:0:0";
       };
     };

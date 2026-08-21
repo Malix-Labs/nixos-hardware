@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    ../.
     ../../../common/cpu/intel
     ../../../common/gpu/nvidia/prime.nix
     ../../../common/gpu/nvidia/ada-lovelace
@@ -15,7 +16,6 @@
 
   boot.initrd.kernelModules = [ "nvidia" ];
   boot.extraModulePackages = [
-    config.boot.kernelPackages.lenovo-legion-module
     config.boot.kernelPackages.nvidia_x11
   ];
 
